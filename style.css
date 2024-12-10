@@ -1,8 +1,9 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    user-select: none;
 }
 
 body {
@@ -11,25 +12,26 @@ body {
     padding: 0 10px;
     align-items: center;
     justify-content: center;
-    background: rgb(238,174,202);
-    background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-
+    background: rgb(238, 174, 202);
+    background: linear-gradient(90deg, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 }
+
 .wrapper {
     width: 770px;
     padding: 35px;
-    background: rgb(238,174,202);
-background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-border-radius: 10px;
-box-shadow: 10px 15px 10px rgba(0,0,0,0.5
-);
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    border-radius: 10px;
+    box-shadow: 10px 15px 10px rgba(0, 0, 0, 0.5);
 }
+
 .wrapper .content-box {
     padding: 13px 20px 0;
     border-radius: 10px;
     border: 1px solid #bfbfbf;
 }
-.content-box .content{
+
+.content-box .content {
     margin-top: 17px;
     display: flex;
     padding: 12px 0;
@@ -37,26 +39,26 @@ box-shadow: 10px 15px 10px rgba(0,0,0,0.5
     align-items: center;
     justify-content: space-between;
     border-top: 1px solid #bfbfbf;
-
 }
-.content-box .result-details{
+
+.content-box .result-details {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width:calc(100% - 140px);
+    width: calc(100% - 140px);
 }
-.result-details{
+
+.result-details {
     display: flex;
     height: 20px;
     list-style: none;
     align-items: center;
-
 }
 
-.content button{
+.content button {
     width: 105px;
     outline: none;
-    border:none;
+    border: none;
     color: #ffffff;
     background-color: orange;
     padding: 8px 0;
@@ -64,14 +66,37 @@ box-shadow: 10px 15px 10px rgba(0,0,0,0.5
     cursor: pointer;
     border-radius: 5px;
     transition: transform 0.2s ease;
-
 }
 
-.content button:hover{
+.content button:hover {
     background-color: darkorange;
     transform: scale(1.06);
 }
 
-.content button:active{
+.content button:active {
     transform: scale(0.95);
+}
+
+.typing-text p span {
+    position: relative;
+}
+
+.typing-text p span.active {
+    color: blue;
+}
+
+.typing-text p span.correct {
+    color: green;
+}
+
+.typing-text p span.incorrect {
+    color: red;
+    background: #fcc0cb;
+}
+
+.wrapper .input-field {
+    padding: 13px 20px 0;
+    position: absolute;
+    opacity: 0;
+    z-index: -99;
 }
