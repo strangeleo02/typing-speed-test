@@ -37,32 +37,46 @@ function loadParagraphs() {
 function initTyping() {
     const characters = typingText.querySelectorAll('span');
     const typedChar = input.value[charIndex];
+    
+    // Prevent errors when reaching end of text
+    if (charIndex >= characters.length || timeLeft <= 0) {
+        clearInterval(timer);
+        input.value = '';
+        return;
+    }
 
-    if (charIndex < characters.length && timeLeft > 0) {
-        if (!isTyping) {
-            timer = setInterval(initTime, 1000);
-            isTyping = true;
-        }
-
+    if (!isTyping) {
+        timer = setInterval(initTime, 1000);
+        isTyping = true;
+    }
+    
+    // Handle backspace and character comparison
+    if (typedChar) {
         if (typedChar === characters[charIndex].innerText) {
+            characters[charIndex].classList.remove('active');
             characters[charIndex].classList.add('correct');
         } else {
+            characters[charIndex].classList.remove('active');
             characters[charIndex].classList.add('incorrect');
             mistake++;
         }
-
+        
         charIndex++;
-        characters[charIndex].classList.add('active');
+        
+        // Safely add 'active' class, avoiding out-of-bounds error
+        if (characters[charIndex]) {
+            characters[charIndex].classList.add('active');
+        }
+        
         mistakes.innerText = mistake;
         cpm.innerText = Math.round((charIndex - mistake));
-
-        // Calculate and display WPM in real-time
+        
+        // Calculate WPM only once
         const totalTime = maxTime - timeLeft;
-        const wpmVal = Math.round((charIndex - mistake) / 5 / totalTime * 60);
+        const wpmVal = totalTime > 0 
+            ? Math.round((charIndex - mistake) / 5 / totalTime * 60) 
+            : 0;
         wpm.innerText = wpmVal;
-    } else {
-        clearInterval(timer);
-        input.value = '';
     }
 }
 
